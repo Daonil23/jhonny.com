@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jhonny L Motors - Venta de vehículos nuevos y usados de alta calidad">
+    <meta name="keywords" content="carros, autos, vehículos, venta de autos, autos usados, autos nuevos">
+    <title>{% block title %}Jhonny L Motors, SRL®️{% endblock %}</title>
+    
+    <!-- Hojas de estilo -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Menú de navegación -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Jhonny L Motors">
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}" class="{{ 'active' if request.endpoint == 'index' else '' }}">Inicio</a>
+            <a href="{{ url_for('show_page', page='Empresa') }}" class="{{ 'active' if request.endpoint == 'show_page' and request.view_args.get('page') == 'Empresa' else '' }}">Empresa</a>
+            <a href="{{ url_for('show_page', page='Experiencia') }}" class="{{ 'active' if request.endpoint == 'show_page' and request.view_args.get('page') == 'Experiencia' else '' }}">Experiencia</a>
+            <a href="{{ url_for('show_page', page='contacto') }}" class="{{ 'active' if request.endpoint == 'show_page' and request.view_args.get('page') == 'contacto' else '' }}">Contacto</a>
+            <a href="{{ url_for('show_page', page='inicial') }}" class="{{ 'active' if request.endpoint == 'show_page' and request.view_args.get('page') == 'inicial' else '' }}">Iniciar Sesión</a>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/jhonnymotorslv/" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/jhonnymotors/" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </div>
+        <p>&copy; {{ now.year }} Jhonny L Motors, SRL - Todos los derechos reservados</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block extra_js %}
+    <script>
+        // Inicialización del slider Swiper
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.querySelector('.swiper')) {
+                var swiper = new Swiper(".mySwiper", {
+                    effect: "coverflow",
+                    grabCursor: true,
+                    centeredSlides: true,
+                    slidesPerView: "auto",
+                    coverflowEffect: {
+                        rotate: 50,
+                        stretch: 0,
+                        depth: 100,
+                        modifier: 1,
+                        slideShadows: true,
+                    },
+                    pagination: {
+                        el: ".swiper-pagination",
+                    },
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    },
+                    loop: true
+                });
+            }
+        });
+    </script>
+    {% endblock %}
+</body>
+</html>

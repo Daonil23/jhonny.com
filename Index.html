@@ -1,0 +1,918 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Estilos para la galería de autos */
+.gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.gallery-title {
+    text-align: center;
+    margin: 30px 0;
+    color: #333;
+}
+
+.car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.car-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.car-card:hover {
+    transform: translateY(-5px);
+}
+
+.car-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.car-info {
+    padding: 15px;
+}
+
+.car-info h3 {
+    margin: 0 0 10px 0;
+    color: #222;
+}
+
+.car-info p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.car-price {
+    font-weight: bold;
+    color: #e74c3c !important;
+    font-size: 18px !important;
+    margin-top: 10px !important;
+}
+
+/* Estilos para el botón de volver arriba */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #e74c3c;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: none;
+}
+
+.back-to-top:hover {
+    background: #c0392b;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <h1>Bienvenidos a Jhonny L Motors</h1>
+        <p>Tu destino confiable para encontrar el vehículo de tus sueños</p>
+        <a href="#vehiculos" class="btn">Explorar Vehículos</a>
+    </div>
+</section>
+
+<!-- Sección de Vehículos Destacados -->
+<section id="vehiculos" class="section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Vehículos Destacados</h2>
+            <p>Descubre nuestra selección de vehículos de alta calidad</p>
+        </div>
+
+        <!-- Slider de vehículos -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <!-- Ejemplo de vehículo 1 -->
+                <div class="swiper-slide">
+                    <div class="car-card">
+                        <img src="{{ url_for('static', filename='images/toyota-4runner.jpg') }}" alt="Toyota 4Runner">
+                        <div class="car-info">
+                            <h3>Toyota 4Runner Limited 2014</h3>
+                            <p><strong>Marca:</strong> Toyota</p>
+                            <p><strong>Modelo:</strong> 4Runner Limited</p>
+                            <p><strong>Año:</strong> 2014</p>
+                            <p class="car-price">$25,000</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ejemplo de vehículo 2 -->
+                <div class="swiper-slide">
+                    <div class="car-card">
+                        <img src="{{ url_for('static', filename='images/honda-crv.jpg') }}" alt="Honda CR-V">
+                        <div class="car-info">
+                            <h3>Honda CR-V 2022</h3>
+                            <p><strong>Marca:</strong> Honda</p>
+                            <p><strong>Modelo:</strong> CR-V EX-L</p>
+                            <p><strong>Año:</strong> 2022</p>
+                            <p class="car-price">$32,500</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Puedes agregar más vehículos según sea necesario -->
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Galería de Autos -->
+<div class="gallery-container">
+    <h2 class="gallery-title">GALERÍA DE AUTOS</h2>
+    
+    <div class="car-grid">
+        <!-- Auto 1 -->
+        <div class="car-card">
+            <img src="{{ url_for('static', filename='images/toyota-4runner.jpg') }}" alt="Toyota 4Runner">
+            <div class="car-info">
+                <h3>Toyota 4Runner Limited 2014</h3>
+                <p><strong>Marca:</strong> Toyota</p>
+                <p><strong>Modelo:</strong> 4Runner Limited</p>
+                <p><strong>Año:</strong> 2014</p>
+                <p><strong>Kilometraje:</strong> 120,000 km</p>
+                <p class="car-price">$25,000</p>
+            </div>
+        </div>
+
+        <!-- Auto 2 -->
+        <div class="car-card">
+            <img src="{{ url_for('static', filename='images/honda-crv.jpg') }}" alt="Honda CR-V">
+            <div class="car-info">
+                <h3>Honda CR-V 2022</h3>
+                <p><strong>Marca:</strong> Honda</p>
+                <p><strong>Modelo:</strong> CR-V EX-L</p>
+                <p><strong>Año:</strong> 2022</p>
+                <p><strong>Kilometraje:</strong> 15,000 km</p>
+                <p class="car-price">$32,500</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Botón de volver arriba -->
+<a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+{% endblock %}
+
+{% block extra_js %}
+<!-- Script para el botón de volver arriba -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Botón de volver arriba
+    var backToTopButton = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    });
+    
+    backToTopButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Inicializar Swiper
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+            },
+        },
+    });
+});
+</script>
+{% endblock %}
+
+.car-info p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.car-price {
+    font-weight: bold;
+    color: #e74c3c !important;
+    font-size: 18px !important;
+    margin-top: 10px !important;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Bienvenidos a Jhonny L Motors</h1>
+        <p>Tu destino confiable para encontrar el vehículo de tus sueños</p>
+        <a href="#vehiculos" class="btn">Explorar Vehículos</a>
+    </div>
+</section>
+
+<!-- Sección de Vehículos Destacados -->
+<section id="vehiculos" class="section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Vehículos Destacados</h2>
+            <p>Descubre nuestra selección de vehículos de alta calidad</p>
+        </div>
+
+        <!-- Slider de vehículos -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <!-- Ejemplo de vehículo 1 -->
+                <div class="swiper-slide">
+                    <a href="{{ url_for('show_page', page='Toyota-4runner-limited-2014') }}">
+                        <img src="{{ url_for('static', filename='images/toyota-4runner.jpg') }}" alt="Toyota 4Runner Limited 2014">
+                    </a>
+                </div>
+                <!-- Ejemplo de vehículo 2 -->
+                <div class="swiper-slide">
+                    <a href="{{ url_for('show_page', page='HONDA-CRV-2022') }}">
+                        <img src="{{ url_for('static', filename='images/honda-crv.jpg') }}" alt="Honda CR-V 2022">
+                    </a>
+                </div>
+                <!-- Añade más vehículos según sea necesario -->
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Servicios -->
+<section class="section" style="background-color: #f8f9fa;">
+    <div class="container">
+        <div class="section-title">
+            <h2>Nuestros Servicios</h2>
+            <p>Ofrecemos soluciones integrales para tu vehículo</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card hover-effect">
+                <div class="service-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <h3>Venta de Vehículos</h3>
+                <p>Amplia selección de vehículos nuevos y seminuevos de las mejores marcas.</p>
+            </div>
+            
+            <div class="service-card hover-effect">
+                <div class="service-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3>Mantenimiento</h3>
+                <p>Servicio de mantenimiento preventivo y correctivo con repuestos originales.</p>
+            </div>
+            
+            <div class="service-card hover-effect">
+                <div class="service-icon">
+                    <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <h3>Financiamiento</h3>
+                <p>Opciones de financiamiento flexibles para que adquieras el auto de tus sueños.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Testimonios -->
+<section class="section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Lo que dicen nuestros clientes</h2>
+            <p>Experiencias reales de nuestros clientes satisfechos</p>
+        </div>
+        
+        <div class="testimonials">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"Excelente servicio y atención al cliente. Encontré exactamente lo que buscaba a un precio justo."</p>
+                </div>
+                <div class="testimonial-author">
+                    <h4>Carlos Rodríguez</h4>
+                    <p>Cliente Satisfecho</p>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"El proceso de financiamiento fue muy sencillo y las condiciones son excelentes. ¡Totalmente recomendado!"</p>
+                </div>
+                <div class="testimonial-author">
+                    <h4>María García</h4>
+                    <p>Cliente Satisfecha</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección CTA -->
+<section class="section" style="background: var(--gradient); color: white; text-align: center;">
+    <div class="container">
+        <h2>¿Listo para encontrar tu vehículo ideal?</h2>
+        <p>Contáctanos hoy mismo y agenda una prueba de manejo sin compromiso.</p>
+        <a href="{{ url_for('show_page', page='contacto') }}" class="btn" style="background: white; color: var(--primary-color); margin-top: 2rem;">Contáctanos</a>
+    </div>
+</section>
+
+<!-- Botón de volver arriba -->
+<a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+<!-- Galería de Autos -->
+<div class="gallery-container">
+    <h2 class="gallery-title">GALERÍA DE AUTOS</h2>
+    
+    <div class="car-grid">
+        <!-- Auto 1 -->
+        <div class="car-card">
+            <img src="{{ url_for('static', filename='images/toyota-4runner.jpg') }}" alt="Toyota 4Runner">
+            <div class="car-info">
+                <h3>Toyota 4Runner Limited 2014</h3>
+                <p><strong>Marca:</strong> Toyota</p>
+                <p><strong>Modelo:</strong> 4Runner Limited</p>
+                <p><strong>Año:</strong> 2014</p>
+                <p><strong>Kilometraje:</strong> 120,000 km</p>
+                <p class="car-price">$25,000</p>
+            </div>
+        </div>
+
+        <!-- Auto 2 -->
+        <div class="car-card">
+            <img src="{{ url_for('static', filename='images/honda-crv.jpg') }}" alt="Honda CR-V">
+            <div class="car-info">
+                <h3>Honda CR-V 2022</h3>
+                <p><strong>Marca:</strong> Honda</p>
+                <p><strong>Modelo:</strong> CR-V EX-L</p>
+                <p><strong>Año:</strong> 2022</p>
+                <p><strong>Kilometraje:</strong> 15,000 km</p>
+                <p class="car-price">$32,500</p>
+            </div>
+        </div>
+
+        <!-- Puedes agregar más vehículos siguiendo el mismo patrón -->
+    </div>
+</div>
+
+<!-- Script para el botón de volver arriba -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Botón de volver arriba
+    var backToTopButton = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    });
+    
+    backToTopButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Inicializar Swiper
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+            },
+        },
+    });
+});
+</script>
+{% endblock %}{% block extra_js %}
+<script>
+    // Mostrar/ocultar botón de volver arriba
+    const backToTop = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTop.classList.add('active');
+        } else {
+            backToTop.classList.remove('active');
+        }
+    });
+    
+    // Efecto de navbar al hacer scroll
+    const navbar = document.querySelector('.navbar');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+    
+    // Inicialización del menú móvil
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    }
+    
+    // Cerrar menú al hacer clic en un enlace
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+</script>
+{% endblock %}        
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<script src="javascript.js"></script>
+
+<!DOCTYPE html>
+    <html lang="en">
+        <link rel="stylesheet" href="Styles/style.css">
+          
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<script src="javascript.js"></script>
+
+        <head>
+
+    <title>Jhonny L Motors, SRL®️</title>
+
+   
+
+
+</head> 
+<body>
+
+    <!-- Menu -->
+    <style>
+      /* Estilos CSS para el menú */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fff; /* Fondo blanco */
+      }
+      
+      .navbar {
+        background-color: rgb(198, 4, 4); /* Rojo oscuro */
+        overflow: hidden;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
+      }
+      
+      .navbar a {
+        color: white;
+        text-decoration: none;
+        padding: 20px 30px; /* Aumento del padding para hacer los botones más grandes */
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        font-size: 18px; /* Tamaño de la letra aumentado */
+      }
+      
+      .navbar a:hover {
+        background-color: #8c0000; /* Rojo más oscuro al pasar el cursor */
+      }
+      
+      .navbar a.active {
+        background-color: #ff0000; /* Rojo brillante para el enlace activo */
+      }
+      
+      .logo {
+        padding: 10px;
+      }
+      
+      .logo img {
+        width: 100px; /* Ajusta el tamaño del logo aquí */
+        height: auto;
+      }
+      </style>
+      </head>
+      <body>
+      
+      <div class="navbar">
+        <div class="logo">
+          <img src="Jhonny.copy.jpg" alt="Logo">
+        </div>
+        <div class="nav-links">
+          <a class="active" href="Index.html">Inicio</a>
+          <a class="active" href="novedades.html">Novedades</a>
+          <a class="active" href="Empresa.html">Empresa</a>
+          <a class="active" href="contacto.html">Contacto</a>
+          <a class="active" href="contacto.html">Desarollador</a>
+          <a class="active" href="inicial.html">inicial secion</a>
+          </div>
+        </div>
+      </div>
+      
+      </body>
+
+
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+      
+            <!-- Demo styles -->
+          
+            <style>
+              html,
+              body {
+                position: relative;
+                height: 100%;
+              }
+          
+              body {
+                background: #eee;
+                font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+                font-size: 14px;
+                color: #000;
+                margin: 0;
+                padding: 0;
+              }
+          
+              .swiper {
+                width: 100%;
+                padding-top: 100px;
+                padding-bottom: 100px;
+              }
+          
+              .swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 50%; /* Cambia el valor según lo que desees */
+  height: 500px; /* Puedes mantener esta altura o cambiarla según tu diseño */
+}
+
+
+          
+              .swiper-slide img {
+                display: block;
+                width: 100%;
+              }
+            </style>
+          </head>
+
+<body>
+    <!-- Swiper -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="guagua.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="la Jeep Grand Cherokee Limited 2014..jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="Toyota Higlander LE Plus 2016.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="honda crv.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="la Toyota RAV4 LE 2017,.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="Nissan Almera 2022.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="CIVIN.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="Chevrolet Colorado 2019.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="'El Lexus RX 350 F Sport 2020.jpg" />
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+         },
+         pagination: {
+ el: ".swiper-pagination",
+},
+autoplay: {
+delay: 1500,// Cambie este valor para ajustar el tiempo de transición de diapositivas en milisegundos (ms)
+disableOnInteraction: false, // Establecer en verdadero para pausar la reproducción automática en la interacción del usuarioion
+},
+});
+</script>
+
+
+    
+
+           
+
+
+            
+  
+
+
+
+
+
+    
+
+
+
+
+<center><h1>GALERIA DE AUTOS</h1></center>
+<style>
+  body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f1f1f1;
+  }
+  
+  .container {
+      display: grid;
+      grid-template-columns: repeat(3, 5fr); /* Tres columnas fijas */
+      grid-gap: 20px;
+      justify-items: center;
+      padding: 20px;
+  }
+  
+  .carro {
+      width: 100%;
+      max-width: 400px; /* Máximo ancho para cada carro */
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      text-align: center;
+  }
+  
+  .carro img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      margin-bottom: 15px;
+  }
+  
+  .carro h2 {
+      font-size: 18px;
+      margin-bottom: 5px;
+  }
+  
+  .carro p {
+      font-size: 16px;
+      margin-bottom: 3px;
+  }
+  
+  .btn-detalles {
+      display: inline-block;
+      background-color: #ff0000;
+      color: white;
+      padding: 8px 16px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+  }
+  
+  .btn-detalles:hover {
+      background-color: #ff0000;
+  }
+  </style>
+  </head>
+  <body>
+  
+  <div class="container">
+      <div class="carro">
+          <img src="https://media.sssinstagram.com/get?__sig=1t3wTbJuO7IzVP7yg6hXhQ&__expires=1715773629&uri=https%3A%2F%2Fscontent-waw2-2.cdninstagram.com%2Fv%2Ft39.30808-6%2F439815365_18344873548129621_363440648186131493_n.jpg%3Fstp%3Ddst-jpg_e15%26_nc_ht%3Dscontent-waw2-2.cdninstagram.com%26_nc_cat%3D101%26_nc_ohc%3D3H1lKy8aHvQQ7kNvgHdR6Fk%26edm%3DAP_V10EAAAAA%26ccb%3D7-5%26oh%3D00_AYDIcIndFkgsVxHG6gbM-_Zna3Rt3cwUadf6bsNHvw8gnA%26oe%3D664A8456%26_nc_sid%3D2999b8" alt="Honda CRV">
+          <h2>Honda CRV</h2>
+          <p>Marca: Honda</p>
+          <p>Año: 2022</p>
+          <p>Precio: $30,000</p>
+          <a href="CIVIN.html" class="btn-detalles">Detalles</a>
+      </div>
+      <div class="carro">
+          <img src="https://media.sssinstagram.com/get?__sig=QEhoOsj1BIKzlD-Jcr7M-w&__expires=1715774133&uri=https%3A%2F%2Fscontent-for1-1.cdninstagram.com%2Fv%2Ft39.30808-6%2F438822215_742008828131610_6267092234644744578_n.jpg%3Fstp%3Ddst-jpg_e35_s1080x1080_sh0.08%26_nc_ht%3Dscontent-for1-1.cdninstagram.com%26_nc_cat%3D106%26_nc_ohc%3DVQnF2ROiM2EQ7kNvgEBwvrM%26edm%3DAP_V10EAAAAA%26ccb%3D7-5%26oh%3D00_AYBk5ti0_djPbWP-tePKQGusadiv6DnTCd-UeVqzB08D3A%26oe%3D664A61A8%26_nc_sid%3D2999b8" alt="Carro 2">
+          <h2>Carro 2</h2>
+          <p>Marca: Otra Marca</p>
+          <p>Año: 2023</p>
+          <p>Precio: $35,000</p>
+          <a href="Corolla.html" class="btn-detalles">Detalles</a>
+      </div>
+      <div class="carro">
+          <img src="guagua3.jpg" alt="Carro 3">
+          <h2>Carro 3</h2>
+          <p>Marca: Tercera Marca</p>
+          <p>Año: 2024</p>
+          <p>Precio: $40,000</p>
+          <a href="Toyota Rav4.htm" class="btn-detalles">Detalles</a>
+      </div>
+      <div class="carro">
+        <img src="https://media.sssinstagram.com/get?__sig=MTK3U9cVyWaMdi11vwLAXA&__expires=1715775109&uri=https%3A%2F%2Fscontent-lga3-1.cdninstagram.com%2Fv%2Ft39.30808-6%2F433536771_721583006840859_7363737102823278997_n.jpg%3Fstp%3Ddst-jpg_e35_s1080x1080_sh0.08%26_nc_ht%3Dscontent-lga3-1.cdninstagram.com%26_nc_cat%3D103%26_nc_ohc%3Dug9qoUQy93sQ7kNvgFdVAK2%26edm%3DAP_V10EAAAAA%26ccb%3D7-5%26oh%3D00_AYBdmi5rDL-7Mef98rb8RIm2O5mdQOMLZNgdy1DFRM3bOQ%26oe%3D664A727A%26_nc_sid%3D2999b8" alt="Carro 3">
+        <h2>Carro 3</h2>
+        <p>Marca: Tercera Marca</p>
+        <p>Año: 2024</p>
+        <p>Precio: $40,000</p>
+        <a href="HONDA CRV 2022.html" class="btn-detalles">Detalles</a>
+    </div>
+    <div class="carro">
+      <img src="https://media.sssinstagram.com/get?__sig=in-AbMUF-840lrbyJgweZw&__expires=1715775366&uri=https%3A%2F%2Finstagram.fdel64-1.fna.fbcdn.net%2Fv%2Ft39.30808-6%2F429932032_711354304530396_7443823112987293559_n.jpg%3Fstp%3Ddst-jpg_e35_s1080x1080_sh0.08%26_nc_ht%3Dinstagram.fdel64-1.fna.fbcdn.net%26_nc_cat%3D100%26_nc_ohc%3DucVzmRuOrckQ7kNvgHxEGg8%26edm%3DAP_V10EAAAAA%26ccb%3D7-5%26oh%3D00_AYCXzlmZBBqDGuchP7GW-DQnOHB1EJ2csIqBODJvWgBNhQ%26oe%3D664A8379%26_nc_sid%3D2999b8" alt="Carro 3">
+      <h2>Carro 3</h2>
+      <p>Marca: Tercera Marca</p>
+      <p>Año: 2024</p>
+      <p>Precio: $40,000</p>
+      <a href="'El Lexus RX 350 .html" class="btn-detalles">Detalles</a>
+  </div>
+  <div class="carro">
+    <img src="https://media.sssinstagram.com/get?__sig=aRSEY9Qwqwnq094rAFDGbQ&__expires=1715775660&uri=https%3A%2F%2Finstagram.fssa29-1.fna.fbcdn.net%2Fv%2Ft39.30808-6%2F426288610_698788939120266_2545228239508295197_n.jpg%3Fstp%3Ddst-jpg_e35_s1080x1080_sh0.08%26_nc_ht%3Dinstagram.fssa29-1.fna.fbcdn.net%26_nc_cat%3D106%26_nc_ohc%3DvuAN34TK6j8Q7kNvgFXrKgt%26edm%3DAP_V10EAAAAA%26ccb%3D7-5%26oh%3D00_AYD9efRHiVciEBC9IhIj4HXtVv_cHJUyojHS-GflrNZ_QQ%26oe%3D664A7977%26_nc_sid%3D2999b8" alt="Carro 3">
+    <h2>Carro 3</h2>
+    <p>Marca: Tercera Marca</p>
+    <p>Año: 2024</p>
+    <p>Precio: $40,000</p>
+    <a href="la Jeep Grand Cherokee.html" class="btn-detalles">Detalles</a>
+</div>
+<div class="carro">
+  <img src="https://media.sssinstagram.com/get?__sig=T0VeWJGrQVQiTtS-_KLd4Q&__expires=1715775953&uri=https%3A%2F%2Fscontent-lax3-2.cdninstagram.com%2Fv%2Ft39.30808-6%2F423249510_694753832857110_8464838774886473160_n.jpg%3Fstp%3Ddst-jpg_e35_s1080x1080_sh0.08%26_nc_ht%3Dscontent-lax3-2.cdninstagram.com%26_nc_cat%3D106%26_nc_ohc%3DmId2YToY89EQ7kNvgEOh5ip%26edm%3DAP_V10EAAAAA%26ccb%3D7-5%26oh%3D00_AYAjQVo8m23VjBdfrHrUw3Hl6dQhkbuUWoiSJEIIA24XdQ%26oe%3D664A7BB0%26_nc_sid%3D2999b8" alt="Carro 3">
+  <h2>Carro 3</h2>
+  <p>Marca: Tercera Marca</p>
+  <p>Año: 2024</p>
+  <p>Precio: $40,000</p>
+  <a href="la Toyota RAV4 LE 2017.html" class="btn-detalles">Detalles</a>
+</div>
+<div class="carro">
+  <img src="https://media.sssinstagram.com/get?__sig=WG3pv2ug9rzH-jFzI_6jlQ&__expires=1715776253&uri=https%3A%2F%2Finstagram.fcpq16-1.fna.fbcdn.net%2Fv%2Ft39.30808-6%2F421951697_690088593323634_7610172290655997263_n.jpg%3Fstp%3Ddst-jpg_e35_s1080x1080_sh0.08%26_nc_ht%3Dinstagram.fcpq16-1.fna.fbcdn.net%26_nc_cat%3D106%26_nc_ohc%3DrzLLU8LogZEQ7kNvgHBpfwu%26edm%3DAP_V10EAAAAA%26ccb%3D7-5%26oh%3D00_AYAYXLG6lyogR7owmsEqQrygM5xtq43CK5_IUwg6VSt-IQ%26oe%3D664A904A%26_nc_sid%3D2999b8" alt="Carro 3">
+  <h2>Carro 3</h2>
+  <p>Marca: Tercera Marca</p>
+  <p>Año: 2024</p>
+  <p>Precio: $40,000</p>
+  <a href="Toyota 4runner limited 2014.html" class="btn-detalles">Detalles</a>
+</div>
+<div class="carro">
+  <img src="https://media.sssinstagram.com/get?__sig=AtWys_YSGH9RvZ6HyEEQXA&__expires=1715776480&uri=https%3A%2F%2Finstagram.fist1-1.fna.fbcdn.net%2Fv%2Ft39.30808-6%2F405322741_660715449594282_2510375842600278619_n.jpg%3Fstp%3Ddst-jpg_e35_s1080x1080_sh0.08%26_nc_ht%3Dinstagram.fist1-1.fna.fbcdn.net%26_nc_cat%3D106%26_nc_ohc%3DvOAJBZrqzTQQ7kNvgEuzLu0%26edm%3DAP_V10EAAAAA%26ccb%3D7-5%26oh%3D00_AYA38cNf37iA4y-H9Ar6_7kn7Eao85WofiJZvV0hcXBdIw%26oe%3D664A60EF%26_nc_sid%3D2999b8" alt="Carro 3">
+  <h2>Carro 3</h2>
+  <p>Marca: Tercera Marca</p>
+  <p>Año: 2024</p>
+  <p>Precio: $40,000</p>
+  <a href="TOYOTA LAND CRUISER .html" class="btn-detalles">Detalles</a>
+</div>
+<div class="carro">
+  <img src="https://media.sssinstagram.com/get?__sig=hUEXku2SsejQl34Vn201TQ&__expires=1715776766&uri=https%3A%2F%2Finstagram.fbzv3-1.fna.fbcdn.net%2Fv%2Ft39.30808-6%2F395321760_643065654692595_2328670451875241167_n.jpg%3Fstp%3Ddst-jpg_e35_s1080x1080_sh0.08%26_nc_ht%3Dinstagram.fbzv3-1.fna.fbcdn.net%26_nc_cat%3D103%26_nc_ohc%3D04Nb7BBHQlEQ7kNvgEyIF2m%26edm%3DAP_V10EAAAAA%26ccb%3D7-5%26oh%3D00_AYCzFYTr_SFQ-eWti_OrG7vyTi24MMQQfb6TK-EVKj65Qw%26oe%3D664A63A8%26_nc_sid%3D2999b8" alt="Carro 3">
+  <h2>Carro 3</h2>
+  <p>Marca: Tercera Marca</p>
+  <p>Año: 2024</p>
+  <p>Precio: $40,000</p>
+  <a href="Mitsubishi Pajero 2020.html" class="btn-detalles">Detalles</a>
+</div>
+<div class="carro">
+  <img src="https://media.sssinstagram.com/get?__sig=4I75PExpD4dBjZXiO_8uHg&__expires=1715776999&uri=https%3A%2F%2Finstagram.fcit2-1.fna.fbcdn.net%2Fv%2Ft39.30808-6%2F404928386_656979429967884_4030524011560473015_n.jpg%3Fstp%3Ddst-jpg_e35_s1080x1080_sh0.08%26_nc_ht%3Dinstagram.fcit2-1.fna.fbcdn.net%26_nc_cat%3D100%26_nc_ohc%3DJLPWDRdxH9sQ7kNvgFP0QjK%26edm%3DAP_V10EAAAAA%26ccb%3D7-5%26oh%3D00_AYBNw830oKBU_FD5Upy-iS9qQvEF4p6eH4sjznGXzNkJZg%26oe%3D664A752F%26_nc_sid%3D2999b8" alt="Carro 3">
+  <h2>Carro 3</h2>
+  <p>Marca: Tercera Marca</p>
+  <p>Año: 2024</p>
+  <p>Precio: $40,000</p>
+  <a href="Toyota Land Cruiser prado 2010.html" class="btn-detalles">Detalles</a>
+</div>
+<div class="carro">
+  <img src="https://media.sssinstagram.com/get?__sig=fR0QtYKa6R-8huUi7ILmtQ&__expires=1715777308&uri=https%3A%2F%2Finstagram.feze13-1.fna.fbcdn.net%2Fv%2Ft39.30808-6%2F401397932_653289377003556_4166335671677871527_n.jpg%3Fstp%3Ddst-jpg_e35_s1080x1080_sh0.08%26_nc_ht%3Dinstagram.feze13-1.fna.fbcdn.net%26_nc_cat%3D100%26_nc_ohc%3D9IkPmcUb8lwQ7kNvgGoBiuh%26edm%3DAP_V10EAAAAA%26ccb%3D7-5%26oh%3D00_AYCO9GTi2uy7MzG7XMfrRDYwjlSLiKvCob__dDJzwHIbaA%26oe%3D664A6D66%26_nc_sid%3D2999b8" alt="Carro 3">
+  <h2>Carro 3</h2>
+  <p>Marca: Tercera Marca</p>
+  <p>Año: 2024</p>
+  <p>Precio: $40,000</p>
+  <a href="Jeep Cherokee altitude 4x4 .html" class="btn-detalles">Detalles</a>
+</div>
+<div class="carro">
+  <img src="https://media.sssinstagram.com/get?__sig=GjmL79VXAONiyXwVPa_S5A&__expires=1715777546&uri=https%3A%2F%2Finstagram.fdel79-1.fna.fbcdn.net%2Fv%2Ft39.30808-6%2F432123036_716754753990351_6172363606986146142_n.jpg%3Fstp%3Ddst-jpg_e35_s1080x1080_sh0.08%26_nc_ht%3Dinstagram.fdel79-1.fna.fbcdn.net%26_nc_cat%3D103%26_nc_ohc%3DlD0lS9kwJusQ7kNvgESTFH2%26edm%3DAP_V10EAAAAA%26ccb%3D7-5%26oh%3D00_AYBqldMN5fbQcI9K8e2uRfO3qjhOHtska26BxdL7fxz42A%26oe%3D664A716F%26_nc_sid%3D2999b8" alt="Carro 3">
+  <h2>Carro 3</h2>
+  <p>Marca: Tercera Marca</p>
+  <p>Año: 2024</p>
+  <p>Precio: $40,000</p>
+  <a href="Chevrolet Silverado LT 1500.html" class="btn-detalles">Detalles</a>
+</div>
+<div class="carro">
+  <img src="https://media.sssinstagram.com/get?__sig=EAiyqwILmBVo4mTiwbsKhw&__expires=1715777846&uri=https%3A%2F%2Finstagram.fspd3-1.fna.fbcdn.net%2Fv%2Ft39.30808-6%2F431992951_719474670385026_6795394293036880543_n.jpg%3Fstp%3Ddst-jpg_e35_s1080x1080_sh0.08%26_nc_ht%3Dinstagram.fspd3-1.fna.fbcdn.net%26_nc_cat%3D106%26_nc_ohc%3Dcz_rbIDs9NIQ7kNvgHBpfwu%26edm%3DAP_V10EAAAAA%26ccb%3D7-5%26oh%3D00_AYDjGVRuEu77Ns3i8cdk42L6u-8NWWnQpOvW9fUai6--RQ%26oe%3D664A8898%26_nc_sid%3D2999b8" alt="Carro 3">
+  <h2>Carro 3</h2>
+  <p>Marca: Tercera Marca</p>
+  <p>Año: 2024</p>
+  <p>Precio: $40,000</p>
+  <a href="Hyundai Santa Fe.html" class="btn-detalles">Detalles</a>
+</div>
+<div class="carro">
+  <img src="https://media.sssinstagram.com/get?__sig=j4bbHpLI-ke1yOnfwM_OTA&__expires=1715778065&uri=https%3A%2F%2Finstagram.fist20-1.fna.fbcdn.net%2Fv%2Ft39.30808-6%2F437850320_738584465140713_5741495397557060978_n.jpg%3Fstp%3Ddst-jpg_e35_s1080x1080_sh0.08%26_nc_ht%3Dinstagram.fist20-1.fna.fbcdn.net%26_nc_cat%3D109%26_nc_ohc%3Dj0Jaf-DzBSsQ7kNvgEPSUZN%26edm%3DAP_V10EAAAAA%26ccb%3D7-5%26oh%3D00_AYCAbB6i4Js5QM4u5X4zmfHCBWvO8ckwAM_Z_KFdhK2v_A%26oe%3D664A679B%26_nc_sid%3D2999b8" alt="Carro 3">
+  <h2>Carro 3</h2>
+  <p>Marca: Tercera Marca</p>
+  <p>Año: 2024</p>
+  <p>Precio: $40,000</p>
+  <a href="Hyundai Santa Fe 2014.html" class="btn-detalles">Detalles</a>
+</div>
+  </div>
+  
+
+
+<style>
+  /* Estilos CSS para el footer */
+  footer {
+    background-color: #c00; /* Rojo oscuro */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  .social-icons a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 40px;
+  }
+  
+  .social-icons a:hover {
+    color: #ff0000; /* Rojo brillante al pasar el cursor */
+  }
+  </style>
+  </head>
+  <body>
+  
+  <footer>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/jhonnymotorslv/"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/jhonnymotors/?locale=es_LA"><i class="fab fa-facebook-f"></i></a>
+    </div>
+    <p>&copy; 2024 Tu Empresa - Todos los derechos reservados</p>
+  </footer>
+  
+  {% endblock %}
+  </body>
+  </html>

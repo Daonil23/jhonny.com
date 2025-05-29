@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="error-container">
+    <div class="error-content">
+        <h1>404</h1>
+        <h2>Página no encontrada</h2>
+        <p>Lo sentimos, la página que estás buscando no existe o ha sido movida.</p>
+        <a href="{{ url_for('index') }}" class="btn btn-primary">Volver al Inicio</a>
+    </div>
+</div>
+
+<style>
+.error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    text-align: center;
+    padding: 20px;
+}
+
+.error-content h1 {
+    font-size: 8rem;
+    margin: 0;
+    color: #c00;
+    font-weight: 900;
+}
+
+.error-content h2 {
+    font-size: 2rem;
+    margin: 10px 0;
+    color: #333;
+}
+
+.error-content p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #c00;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #a00;
+}
+</style>
+{% endblock %}
